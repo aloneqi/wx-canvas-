@@ -1,0 +1,1 @@
+<canvas  canvas-id="canvas" bindtouchstart="js_touchstart" bindtouchmove="js_touchmove" bindtouchend="js_touchend"></canvas>
