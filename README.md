@@ -1,6 +1,6 @@
 # wx-canvas-
 
-微信小程序 canvas区间滑动选取 只做了对宽度的响应式
+微信小程序 canvas区间滑动选取
 
 目标js文件引用方式 import { SelectInterval } from '层级目录/selectInterval';
 目标js文件onLoad(){}里面要一下写入例如: this.selectInterval = new selectInterval({属性});
