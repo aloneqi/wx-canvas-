@@ -69,9 +69,10 @@
 			// },(如果不传不会显示图片)
 			
 			followValue:{
+				name:'',                               String类型,用作设置单位
  				color:'#f8835f',
- 				size:10,                                 设置字体大小
- 				leftY:151,                               随数值在canvas纵向的位置
+ 				size:10,                               设置字体大小
+ 				leftY:151,                             随数值在canvas纵向的位置
  				rightY:151
  			}(如果不传不会显示跟随数值)
 		});
