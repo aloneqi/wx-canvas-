@@ -3,15 +3,24 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"postcss": false,
-		"minified": true
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
 	},
-	"compileType": "weapp",
-	"libVersion": "1.5.3",
+	"compileType": "miniprogram",
+	"libVersion": "2.0.9",
 	"appid": "touristappid",
 	"projectname": "SelectInterval",
 	"condition": {
-		"weapp": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
 			"current": -1,
 			"list": [
 				{
@@ -27,14 +36,6 @@
 					"query": ""
 				}
 			]
-		},
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
 		}
 	}
 }
