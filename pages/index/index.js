@@ -34,10 +34,11 @@ Page({
 				isfollow:{
 					view:true,
 					roundSize:12,
-					roundColor:'rgba(10, 113, 238, 0.8)',
+					roundColor:'rgba(10, 113, 238, 0.8)'
 				}
 			},
 			scaleIn:{
+				name:'km',
 				size:10,
 				valueY:108,
 				pointY:113

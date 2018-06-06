@@ -34,7 +34,7 @@ SelectInterval.prototype={
 			}else if(typeof object.rightSliderStop === "number"){
 				this.scalevalue = object.rightSliderStop
 			}
-			object.followValue && (this.followValue = Object.assign(object.followValue,{size:object.followValue.size*object.res,leftY:object.followValue.leftY*object.resY,rightY:object.followValue.rightY*object.resY}));
+			object.followValue && (this.followValue = Object.assign(object.followValue,{name:object.followValue.name || '',size:object.followValue.size*object.res,leftY:object.followValue.leftY*object.resY,rightY:object.followValue.rightY*object.resY}));
 			object.showTitle && (this.showTitle = {name:object.showTitle.name || '' ,size:object.showTitle.size*object.res,title:object.showTitle.title || '#000000',positionX:object.showTitle.positionX*object.res,positionY:object.showTitle.positionY*object.resY,isfollow:object.showTitle.isfollow || {view:false}});
 			object.scaleIn && (this.scaleIn = Object.assign(object.scaleIn,{name:object.scaleIn.name || '',valueY:object.scaleIn.valueY*object.resY,pointY:object.scaleIn.pointY*object.resY}));
 			if(object.image){
@@ -46,7 +46,7 @@ SelectInterval.prototype={
 					rightY:object.image.rightY*object.resY,
 					imgHalf:(object.image.width*object.res)/2
 				});
-				object.manner && (this.realRd=this.image.width);
+				!object.manner && (this.realRd=this.image.width);
 			}else{
 				this.y=this.height[0]+(this.height[1]/2);
 				this.round = {
@@ -119,7 +119,7 @@ SelectInterval.prototype={
 				this.ctx.setFillStyle(this.showTitle.isfollow.roundColor);
 				this.ctx.fill();
 				this.ctx.setFillStyle(this.showTitle.title);
-				this.ctx.fillText(`${this.select_area?this.range.min:this.range.max>this.paragraph[1]?this.paragraph[1]+'+':this.range.max}`, this.select_area?this.x1:this.x2  , this.showTitle.positionY+this.showTitle.isfollow.roundSize/4);
+				this.ctx.fillText(`${this.select_area?this.range.min<0?0:this.range.min:this.range.max>this.paragraph[1]?this.paragraph[1]+'+':this.range.max}`, this.select_area?this.x1:this.x2  , this.showTitle.positionY+this.showTitle.isfollow.roundSize/4);
 			}else{
 				this.ctx.setFontSize(this.showTitle.size);
 				this.ctx.setFillStyle(this.showTitle.title);
@@ -127,7 +127,7 @@ SelectInterval.prototype={
 				if(this.range.min <= this.paragraph[2] ){
 				   	this.ctx.fillText(this.range.max>=decimal?'全部':`${this.range.min<0?0:this.range.min}${this.showTitle.name}-${this.range.max}${this.showTitle.name}`, this.showTitle.positionX  , this.showTitle.positionY);
 			   	}else{
-				   	this.ctx.fillText(this.range.min+this.range.max >= decimal?`${this.showTitle.name}以上`:`${this.showTitle.name}-${this.range.max}${this.showTitle.name}`, this.showTitle.positionX  , this.showTitle.positionY);
+				   	this.ctx.fillText(this.range.max >= decimal?`${this.range.min + this.showTitle.name}以上`:`${this.range.min + this.showTitle.name}-${this.range.max}${this.showTitle.name}`, this.showTitle.positionX  , this.showTitle.positionY);
 			   	}
 			}
  		},
@@ -135,13 +135,12 @@ SelectInterval.prototype={
  			this.ctx.setFillStyle(this.followValue.color);
  			this.ctx.setFontSize(this.followValue.size);
  			var decimal=this.paragraph[1]/this.decimalPoint;
- 			this.ctx.fillText(`${this.range.min<=0?0:this.range.min}${this.scaleIn.name}`, this.x1, this.followValue.leftY);
- 			this.ctx.fillText(`${this.range.max>decimal?decimal+this.scaleIn.name+'+':this.range.max+this.scaleIn.name}`, this.x2, this.followValue.rightY);
+ 			this.ctx.fillText(`${this.range.min<=0?0:this.range.min}${this.followValue.name}`, this.x1, this.followValue.leftY);
+ 			this.ctx.fillText(`${this.range.max>decimal?decimal+this.followValue.name+'+':this.range.max+this.followValue.name}`, this.x2, this.followValue.rightY);
 		},
 		transfer:function(fn){ 
 			if(this.select_area === undefined) return;
 			this.select_area = undefined;
-			console.log(this.range.max)
 			fn(this.range.min < 0?0:this.range.min,this.range.max > this.paragraph[1]?null:this.range.max);
 			this.draw(arguments[1]);
 		},
