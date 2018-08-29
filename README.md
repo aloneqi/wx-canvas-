@@ -3,7 +3,7 @@
 微信小程序 canvas区间滑动选取
 
 目标js文件使用 import 引入;
-目标js文件onLoad(){}里面要一下写入例如: this.selectInterval = new selectInterval({属性});
+然后在onLoad(){}里面要一下写入例如: this.selectInterval = new selectInterval({属性});
 
 
 
